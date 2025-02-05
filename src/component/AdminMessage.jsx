@@ -36,6 +36,14 @@ function AdminMessage() {
   }, []);
 
   const apiUrl = import.meta.env.VITE_REACT_APP_API_URL 
+  const fetchMessages = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/api/messages`,{},{ withCredentials: true });
+      setMessages(response.data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
 
   useEffect(() => {
     if (!isAuthenticated) return;
@@ -43,15 +51,7 @@ function AdminMessage() {
     fetchMessages();
   }, [isAuthenticated]);
 
-  const fetchMessages = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/api/messages`);
-      setMessages(response.data);
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-    }
-  };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -61,7 +61,7 @@ function AdminMessage() {
     }
 
     try {
-      const response = await axios.post(`${apiUrl}/api/messages`, { message, link });
+      const response = await axios.post(`${apiUrl}/api/messages`, { message, link },{ withCredentials: true });
       setMessages([...messages, response.data]); // Update UI
       setMessage("");
       setLink("");
@@ -74,7 +74,7 @@ function AdminMessage() {
     if (!window.confirm("Are you sure you want to delete this message?")) return;
 
     try {
-      await axios.delete(`${apiUrl}/api/messages/${id}`);
+      await axios.delete(`${apiUrl}/api/messages/${id}`,{},{ withCredentials: true });
       setMessages(messages.filter((msg) => msg._id !== id)); // Update UI after deletion
     } catch (error) {
       console.error("Error deleting message:", error);

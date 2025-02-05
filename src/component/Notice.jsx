@@ -44,7 +44,7 @@ function Notice() {
 
   const fetchNotices = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/api/messages`);
+      const response = await axios.get(`${apiUrl}/api/messages`,{},{withCredentials: true});
       setNotices(response.data);
     } catch (error) {
       console.error("Error fetching notices:", error);
