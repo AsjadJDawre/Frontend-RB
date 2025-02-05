@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import paytm_payment_tune from "../assets/paytm_payment_tune.mp3";
 const SuccessPage = () => {
   const [audio] = useState(new Audio(paytm_payment_tune));
-
+  const navigate = useNavigate();
   useEffect(() => {
     const playAudio = () => {
       audio.play().catch((error) => console.error("Audio play failed", error));
@@ -54,7 +55,7 @@ const SuccessPage = () => {
         {/* Button to Go Back */}
         <button
           className="mt-4 rounded-lg bg-white px-6 py-3 font-medium text-blue-600 shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-300"
-          onClick={() => (window.location.href = "/user-dashboard")}
+          onClick={() =>  navigate("/user-dashboard")}
         >
           Go to Home
         </button>
