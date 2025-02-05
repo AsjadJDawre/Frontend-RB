@@ -177,7 +177,7 @@ setTimeout(() => {
     >
 Sort by Date {sortOrder === "asc" ? "⬆️ Ascending" : "⬇️ Descending"}
 </button>
-<button className="px-4 py-2 bg-gray-300 rounded ml-auto" onClick={() => window.location.href = '/admin-message'}>Message</button>
+<button className="px-4 py-2 bg-gray-300 rounded ml-auto" onClick={() => navigate("/admin-message")}>Message</button>
 </div>
 
 
