@@ -60,7 +60,7 @@ function Userdashboard() {
 <div className="flex justify-center items-center gap-10 py-6">
   <Link to="/user-booking" className="transition-transform hover:scale-105">
     <img 
-      src="../public/Bookin-logo.webp" 
+      src="/Bookin-logo.webp" 
       alt="Logo One" 
     
       className="w-64 h-64 border-2 bg-gray-600 border-gray-700 rounded-full p-4 object-contain max-w-full"
@@ -68,7 +68,7 @@ function Userdashboard() {
   </Link>
   <Link to="/booking-history" className=" transition-transform hover:scale-105">
     <img 
-      src="../public/booking-history-logo23.png" 
+      src="/booking-history-logo23.png" 
       alt="Logo Two" 
       className="w-64 h-64 border-2 border-gray-700 rounded-full bg-gray-600 p-4 object-scale-down max-w-full"
     />
