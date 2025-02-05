@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function AdminMessage() {
   const [message, setMessage] = useState("");
@@ -63,9 +64,13 @@ function AdminMessage() {
     try {
       const response = await axios.post(`${apiUrl}/api/messages`, { message, link },{ withCredentials: true });
       setMessages([...messages, response.data]); // Update UI
+      if(response.status===200){
+        toast.success("Message sent successfully!");
+      }
       setMessage("");
       setLink("");
     } catch (error) {
+      toast.error("Error sending message, please try again!");
       console.error("Error saving message:", error);
     }
   };
@@ -74,9 +79,13 @@ function AdminMessage() {
     if (!window.confirm("Are you sure you want to delete this message?")) return;
 
     try {
-      await axios.delete(`${apiUrl}/api/messages/${id}`,{},{ withCredentials: true });
+    const res =  await axios.delete(`${apiUrl}/api/messages/${id}`,{},{ withCredentials: true });
       setMessages(messages.filter((msg) => msg._id !== id)); // Update UI after deletion
+      if(res.status===200){
+        toast.success("Message deleted successfully!");
+      }
     } catch (error) {
+      toast.error("Error deleting message, please try again!");
       console.error("Error deleting message:", error);
     }
   };
