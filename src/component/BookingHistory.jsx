@@ -51,7 +51,7 @@ const navigate = useNavigate()
     const fetchBookings = async () => {
       if (!isAuthenticated) return; 
       try {
-        const response = await axios.post(`${apiUrl}/api/get-bookings`);
+        const response = await axios.post(`${apiUrl}/api/get-bookings`,{},{ withCredentials: true });
         if (response.status !== 200) throw new Error("Failed to fetch booking data.");
 
         setBookings(response.data.data.bookings);
