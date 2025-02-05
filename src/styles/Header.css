@@ -1,0 +1,175 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-container {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white; /* White background for the header */
+    border-bottom: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+}
+
+/* Left Section */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between logo and text */
+}
+
+.hp-logo {
+    height: auto;
+}
+
+.nav-vertical-hr {
+    margin: 0 1rem; /* Combines margin-left and margin-right */
+    border-left: 1px solid #e4e4e4; /* Vertical line for separator */
+    height: 40px; /* Vertical height of the line */
+    /* display: block; Ensures the HR is visible */
+}
+
+@media only screen and (max-width: 1023px) {
+    .nav-vertical-hr {
+        display: none; /* Hides the element on medium-sized screens and below */
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .nav-vertical-hr {
+        margin: 0 0.5rem; /* Adjusts margins for smaller screens */
+    }
+}
+
+.header-text h1 {
+    font-size: 18px;
+    margin: 0;
+    color: #0033a0; /* Deep blue for Hindi text */
+}
+
+.header-text h2 {
+    font-size: 16px;
+    margin: 0;
+    color: black;
+}
+
+.header-text p {
+    font-size: 14px;
+    margin: 0;
+    color: gray;
+}
+
+/* Middle Section */
+.header-middle {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between images and text */
+}
+
+.anniversary-logo,
+.info-logo {
+    height: auto;
+    max-width: 70px;
+ 
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* .anniversary-logo{
+    margin-left: -118%;
+} */
+
+
+
+.text-size-controls {
+    display: flex;
+    gap: 5px; /* Space between the buttons */
+  }
+  
+  .text-size {
+    font-size: 14px;
+    cursor: pointer;
+    color: #0033a0; /* Blue color */
+    background: none;
+    border: none;
+    font-weight: bold;
+  }
+  
+  .text-size:hover {
+    text-decoration: underline; /* Highlight on hover */
+  }
+  
+
+
+
+.delivering-happiness {
+    font-size: 14px;
+    color: #0033a0;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Right Section */
+.header-right {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px; /* Space between links and controls */
+}
+
+.header-links {
+    display: flex;
+    gap: 15px; /* Space between each link */
+}
+
+.header-links a {
+    font-size: 14px;
+    color: #0033a0;
+    text-decoration: none;
+}
+
+.header-links a:hover {
+    text-decoration: underline;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between controls */
+}
+
+.text-size-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.text-size {
+    font-size: 14px;
+    cursor: pointer;
+    color: #0033a0;
+}
+
+.language-toggle {
+    background-color: #ff0000; /* Red button for Hindi toggle */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon-buttons {
+    display: flex;
+    gap: 10px; /* Space between icons */
+}
+
+.icon {
+    font-size: 16px;
+    color: #0033a0;
+    cursor: pointer;
+}
