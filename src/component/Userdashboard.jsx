@@ -10,7 +10,7 @@ function Userdashboard() {
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_REACT_APP_API_URL 
   useEffect(() => {
-    if (isAuthenticated) return; // ✅ Prevents repeated API calls
+    
 
     const checkUser = async () => {
       try {
