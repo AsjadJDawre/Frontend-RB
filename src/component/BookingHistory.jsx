@@ -70,6 +70,21 @@ const navigate = useNavigate()
 
   const handleTabClick = (status) => setActiveTab(status);
 
+const handleLogout = async () => {
+  const resp = await axios
+    .post(`${apiUrl}/api/logout`,{},{ withCredentials: true })
+    .then((response) => {
+      console.log(response.data);
+      toast.success("User logged out successfully!");
+setTimeout(() => {
+navigate("/");
+})    })
+    .catch((error) => {
+      console.error("Logout error:", error);
+      toast.error("Logout failed, please try again!");
+    });
+};
+
   // Filter Bookings based on active tab
   const filteredBookings = combinedData.filter((booking) => {
     if (activeTab === "Pending") return booking.paymentStatus === "Pending";
@@ -98,10 +113,19 @@ const navigate = useNavigate()
     <>
       <Header />
       <div className="container mx-auto p-4">
-        <h2 className="text-2xl font-bold mb-4">Booking History</h2>
+  <div className="flex justify-between items-center mb-4">
+    <h2 className="text-2xl font-bold">Booking History</h2>
+    <button 
+      onClick={handleLogout} 
+      className="text-red-500 px-4 py-2 border border-red-500 rounded-xl font-semibold 
+                 hover:text-white hover:bg-red-500 transition duration-300"
+    >
+      Log Out
+    </button>
+  </div>
 
         {/* Tab Buttons */}
-        <div className="mb-4 flex gap-2">
+        <div className="mb-4 flex mt-6 gap-2">
           {["Upcoming", "Pending", "Paid", "Rejected"].map((status) => (
             <button
               key={status}
@@ -113,6 +137,8 @@ const navigate = useNavigate()
               {status}
             </button>
           ))}
+
+ 
 
           {/* Sort Button */}
           <button

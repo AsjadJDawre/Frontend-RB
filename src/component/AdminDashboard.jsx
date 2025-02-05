@@ -52,7 +52,7 @@ setIsAuthenticated(true);
 
     const fetchBookings = async () => {
       try {
-        const response = await axios.post(`${apiUrl}/api/get-Allbookings`);
+        const response = await axios.post(`${apiUrl}/api/get-Allbookings`,{},{ withCredentials: true });
         if (response.status !== 200) {
           throw new Error("Failed to fetch booking data.");
         }
@@ -74,7 +74,7 @@ setIsAuthenticated(true);
 
   const handleAction = async (id, action) => {
     try {
-      const response=await axios.post(`${apiUrl}/api/update-booking`, { id, status: action });
+      const response=await axios.post(`${apiUrl}/api/update-booking`, { id, status: action },{ withCredentials: true });
       setBookings((prev) => prev.map((booking) => 
         booking._id === id ? { ...booking, adminStatus: action } : booking
       ));
@@ -104,7 +104,7 @@ const sortedBookings = [...filteredBookings].sort((a, b) => {
   // Fetch user details from API
   const fetchUserDetails = async (applicantId) => {
     try {
-      const response = await axios.post(`${apiUrl}/api/getUserDetails`, { applicantId });
+      const response = await axios.post(`${apiUrl}/api/getUserDetails`, { applicantId },{ withCredentials: true });
 
       if (response.status !== 200)  {
         throw new Error("Failed to fetch user details");
@@ -120,7 +120,7 @@ const sortedBookings = [...filteredBookings].sort((a, b) => {
   };
   const handleLogout = async () => {
     const resp = await axios
-      .post(`${apiUrl}/api/logout`)
+      .post(`${apiUrl}/api/logout`,{},{ withCredentials: true })
       .then((response) => {
         console.log(response.data);
         toast.success("User logged out successfully!");

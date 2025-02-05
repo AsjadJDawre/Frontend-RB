@@ -32,7 +32,7 @@ function Booking() {
       };
   
       checkUser(); // 
-    }, [navigate]); // 
+    }, []); // 
   
   const [QuotaLeftAfterUpdate ,setQuotaLeftAfterUpdate]=useState(0)
 const [Disable , setDisable]=useState(false)
@@ -41,6 +41,22 @@ const [Disable , setDisable]=useState(false)
     optionType: "Mobile Number",
     inputValue: "",
   });
+
+  const handleLogout = async () => {
+    const resp = await axios
+      .post(`${apiUrl}/api/logout`,{},{ withCredentials: true })
+      .then((response) => {
+        console.log(response.data);
+        toast.success("User logged out successfully!");
+setTimeout(() => {
+  navigate("/");
+})    })
+      .catch((error) => {
+        console.error("Logout error:", error);
+        toast.error("Logout failed, please try again!");
+      });
+  };
+
 
   useEffect(() => {
     if (!isAuthenticated) return; 
@@ -57,28 +73,28 @@ const [Disable , setDisable]=useState(false)
       }
     }
     fetchQuota()
-  })
+  },[isAuthenticated])
   const [step, setStep] = useState(1); // Step 1: Booking Form, Step 2: Payment Options
   const handleIncrease = () => setValue((prev) => prev + 1);
   const handleDecrease = () => setValue((prev) => (prev > 0 ? prev - 1 : 0)); // Prevent negative values
   const [refillLeft, setRefillLeft] = useState(0);
-  // useEffect(() => {
-  //   console.log("useEffect is running");
-  //   const getRefillLeft = async () => {
-  //     try {
-  //       const response = await axios.get("/api/get-refill-left", {
-  //         withCredentials: true,
-  //       });
-  //       console.log("API Response:", response); // Log the full response
-  //       const refills = response.data.Total_Refill;
-  //       setRefillLeft(refills);
-  //       console.log("from Booking to browser Log ", refills); // Log refills
-  //     } catch (error) {
-  //       console.log("Error in API call:", error.message);
-  //     }
-  //   };
-  //   getRefillLeft();
-  // }, []);
+  useEffect(() => {
+    console.log("useEffect is running");
+    const getRefillLeft = async () => {
+      try {
+        const response = await axios.get("/api/get-refill-left", {
+          withCredentials: true,
+        });
+        console.log("API Response:", response); // Log the full response
+        const refills = response.data.Total_Refill;
+        setRefillLeft(refills);
+        console.log("from Booking to browser Log ", refills); // Log refills
+      } catch (error) {
+        console.log("Error in API call:", error.message);
+      }
+    };
+    getRefillLeft();
+  }, [isAuthenticated]);
   
   
 
@@ -255,7 +271,7 @@ console.log('this is my style',RAZORPAY_KEY_ID)
             const verifyResponse = await axios.post(
               `${apiUrl}/api/verify-payment`,
               payload,
-              { withCredentials: true } // Add this as we are using cookies for authentication
+              { withCredentials: true }
             );
         
             const verifyResult = verifyResponse.data;
@@ -312,7 +328,13 @@ console.log('this is my style',RAZORPAY_KEY_ID)
       alert("Something went wrong. Please try again.");
     }
   };
-  
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="spinner-border animate-spin h-8 w-8 border-t-4 border-blue-600 rounded-full"></div>
+      </div>
+    );
+  }
   
   return (
     <div className="wrapper">
@@ -320,6 +342,19 @@ console.log('this is my style',RAZORPAY_KEY_ID)
       isAuthenticated?  ( 
     <>
 <Header/>
+<div className="container mx-auto p-4">
+  <div className="flex justify-between items-center mb-4">
+    <button 
+      onClick={handleLogout} 
+      className="text-red-500 px-4 py-2 border border-red-500 rounded-xl font-semibold 
+                 hover:text-white hover:bg-red-500 transition duration-300"
+    >
+      Log Out
+    </button>
+  </div>
+</div>
+
+
 <div
   className={`fixed top-36 right-4 px-6 py-3 rounded-lg shadow-xl text-lg font-semibold border-2 ${
     Disable
