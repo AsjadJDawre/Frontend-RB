@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
 function AdminMessage() {
   const [message, setMessage] = useState("");
@@ -129,7 +129,7 @@ function AdminMessage() {
           Save Message
         </button>
       </form>
-
+<Toaster richColors position="top-right"/>
       {/* Display Messages */}
       <div>
         <h3 className="text-xl font-semibold mb-3 text-gray-700">Saved Messages</h3>
