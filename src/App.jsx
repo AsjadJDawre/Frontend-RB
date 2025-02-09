@@ -14,6 +14,7 @@ import AdminSuccess from './component/AdminSuccess';
 import AdminMessage from './component/AdminMessage';
 import Notice from './component/Notice';
 import NotFound from "./component/NotFound";
+import Forgot_Password from './component/Password_Reset';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
   <Route path="/notice" element={<Notice />} />
   <Route path="/Test" element={<Test />} />
   <Route path="/Admin" element={<AdminDashboard />} />
+  <Route path="/password-reset" element={<Forgot_Password />} />
 
   <Route path="*" element={<NotFound />} />
 

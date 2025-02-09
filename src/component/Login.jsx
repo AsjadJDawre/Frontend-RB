@@ -162,7 +162,7 @@ console.log(apiUrl)
             </div>
             <div className="forget">
               <label>
-                <a className='Login-anchor' href="#">Forget Password</a>
+              <Link to={'/password-reset'}>Forget Password</Link>
               </label>
             </div>
             <div className="button_group" id="login_button" disabled={loading}>
