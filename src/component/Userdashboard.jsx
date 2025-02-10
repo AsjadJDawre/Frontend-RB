@@ -32,7 +32,7 @@ function Userdashboard() {
     };
 
     checkUser();
-  }, [navigate, isAuthenticated]);
+  }, []);
 
   // ✅ Logs updated state only when `isAuthenticated` changes
   useEffect(() => {
@@ -55,6 +55,15 @@ function Userdashboard() {
 <Header/>
 <Carousel/>
 
+<div className="flex justify-end items-center">
+  <Link 
+    to="/notice" 
+    className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+  >
+    Notice's
+  </Link>
+</div>
+
 
 
 <div className="flex justify-center items-center gap-10 py-6">
@@ -73,7 +82,10 @@ function Userdashboard() {
       className="w-64 h-64 border-2 border-gray-700 rounded-full bg-gray-600 p-4 object-scale-down max-w-full"
     />
   </Link>
+  
+
 </div>
+
 
 
 
