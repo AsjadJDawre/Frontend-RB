@@ -16,7 +16,8 @@ function Userdashboard() {
       try {
         console.log("i am in useEffect");
         const user = await axios.post(`${apiUrl}/api/verify`, {}, { withCredentials: true });
-        console.log('this is the response form api',user)
+        // console.log('this is the response form api',user)
+        
 
         if (user.status === 200) {
           setIsAuthenticated(true);

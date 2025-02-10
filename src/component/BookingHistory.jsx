@@ -17,12 +17,12 @@ const navigate = useNavigate()
       const checkUser = async () => {
         try {
           const user = await axios.post(`${apiUrl}/api/verify`, {}, { withCredentials: true });
-          console.log("Response:", user);
+          // console.log("Response:", user);
           if (user.status === 200) {
   setIsAuthenticated(true);
             toast.success("You are logged in successfully");
           } else {
-            console.log("user ",user)
+            // console.log("user ",user)
             setLoading(true)
             setTimeout(() => {
               navigate("/login");
@@ -74,7 +74,7 @@ const handleLogout = async () => {
   const resp = await axios
     .post(`${apiUrl}/api/logout`,{},{ withCredentials: true })
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       toast.success("User logged out successfully!");
 setTimeout(() => {
 navigate("/");

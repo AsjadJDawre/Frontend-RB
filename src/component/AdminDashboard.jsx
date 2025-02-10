@@ -56,8 +56,8 @@ setIsAuthenticated(true);
         if (response.status !== 200) {
           throw new Error("Failed to fetch booking data.");
         }
-        console.log('This is the response: ',response)
-        console.log(response.data.adminQuota);
+        // console.log('This is the response: ',response)
+        // console.log(response.data.adminQuota);
         setBookings(response.data.adminQuota);
       } catch (err) {
         setError(err.message);
@@ -109,7 +109,7 @@ const sortedBookings = [...filteredBookings].sort((a, b) => {
       if (response.status !== 200)  {
         throw new Error("Failed to fetch user details");
       }
-      console.log("Get User a:",response.data.user)
+      // console.log("Get User a:",response.data.user)
       const data = response.data.user;
       setUserDetails(data);
       setIsModalOpen(true); // Open modal when data is received
@@ -122,7 +122,7 @@ const sortedBookings = [...filteredBookings].sort((a, b) => {
     const resp = await axios
       .post(`${apiUrl}/api/logout`,{},{ withCredentials: true })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         toast.success("User logged out successfully!");
 setTimeout(() => {
   navigate("/");

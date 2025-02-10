@@ -46,7 +46,7 @@ const [Disable , setDisable]=useState(false)
     const resp = await axios
       .post(`${apiUrl}/api/logout`,{},{ withCredentials: true })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         toast.success("User logged out successfully!");
 setTimeout(() => {
   navigate("/");
@@ -62,13 +62,13 @@ setTimeout(() => {
     if (!isAuthenticated) return; 
     const fetchQuota = async () => {
       const resp = await axios.post(`${apiUrl}/api/get-quota`,{}, { withCredentials: true });
-      console.log('I am hitting get-quota',resp)
+      // console.log('I am hitting get-quota',resp)
       setQuotaLeftAfterUpdate(resp.data.RefillsQuotaLeft
-      )
+      )                                        
       if(QuotaLeftAfterUpdate===0){
         setDisable(true)
       }
-      if(QuotaLeftAfterUpdate>0){
+      else{
         setDisable(false)
       }
     }
@@ -85,10 +85,10 @@ setTimeout(() => {
         const response = await axios.get("/api/get-refill-left", {
           withCredentials: true,
         });
-        console.log("API Response:", response); // Log the full response
+        // console.log("API Response:", response); // Log the full response
         const refills = response.data.Total_Refill;
         setRefillLeft(refills);
-        console.log("from Booking to browser Log ", refills); // Log refills
+        // console.log("from Booking to browser Log ", refills); // Log refills
       } catch (error) {
         console.log("Error in API call:", error.message);
       }
@@ -155,10 +155,10 @@ setTimeout(() => {
   // Handle payment with Razorpay
   const handleProceedToPayment = async ( ) => {
 
-    console.log("QuotaLeftAfterUpdate",QuotaLeftAfterUpdate)
+    // console.log("QuotaLeftAfterUpdate",QuotaLeftAfterUpdate)
       if(QuotaLeftAfterUpdate===0){
         try {
-          console.log("Paylater : ",PayLater)
+          // console.log("Paylater : ",PayLater)
           const response = await axios.post(
             `${apiUrl}/api/create-booking-adminQuota`,
             {
@@ -192,11 +192,11 @@ setTimeout(() => {
           payLater: true,  // Include PayLater flag
         }, { withCredentials: true });
   
-        console.log(response.data);
+        // console.log(response.data);
         if(response.status===200){
-          console.log('The reponse of booking : ',response)
+          // console.log('The reponse of booking : ',response)
         const   UpdatedQuota = response.data.data.QuotaLeftAfterUpdate
-        console.log("This is my updated Quota",UpdatedQuota);
+        // console.log("This is my updated Quota",UpdatedQuota);
         
           setQuotaLeftAfterUpdate(UpdatedQuota)
           toast.success("Booking Created Successfully!  Payment is Pending.");
@@ -212,7 +212,7 @@ setTimeout(() => {
     
 
     const RAZORPAY_KEY_ID = import.meta.env.VITE_REACT_APP_RAZORPAY_KEY_ID;
-console.log('this is my style',RAZORPAY_KEY_ID)
+// console.log('this is my style',RAZORPAY_KEY_ID)
     try {
       // Step 1: Fetch user details for Razorpay prefill
       const userResponse = await axios.get(`${apiUrl}/api/user-details`, {
@@ -240,8 +240,8 @@ console.log('this is my style',RAZORPAY_KEY_ID)
       );
   
       const order = bookingResponse.data;
-      console.log("Booking Order:", order);
-      console.log("Razorpay OrderId:", order.order.id);
+      // console.log("Booking Order:", order);
+      // console.log("Razorpay OrderId:", order.order.id);
 
   
       // const RAZORPAY_KEY_ID = import.meta.env.VITE_REACT_APP_RAZORPAY_KEY_ID;
@@ -257,7 +257,7 @@ console.log('this is my style',RAZORPAY_KEY_ID)
         order_id: order.order.id,
         handler: async (response) => {
           try {
-            console.log("this is my response L :",response)
+            // console.log("this is my response L :",response)
          const   razorpay_signature1 = response.razorpay_signature
 
             const payload = {
@@ -266,7 +266,7 @@ console.log('this is my style',RAZORPAY_KEY_ID)
               razorpay_signature: response.razorpay_signature,
             };
         
-            console.log("Sending payload to /api/verify-payment:", payload);
+            // console.log("Sending payload to /api/verify-payment:", payload);
         
             const verifyResponse = await axios.post(
               `${apiUrl}/api/verify-payment`,
