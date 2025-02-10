@@ -61,17 +61,24 @@ setTimeout(() => {
   useEffect(() => {
     if (!isAuthenticated) return; 
     const fetchQuota = async () => {
-      const resp = await axios.post(`${apiUrl}/api/get-quota`,{}, { withCredentials: true });
-      // console.log('I am hitting get-quota',resp)
-      setQuotaLeftAfterUpdate(resp.data.RefillsQuotaLeft
-      )                                        
-      if(QuotaLeftAfterUpdate===0){
-        setDisable(true)
+      try {
+        const resp = await axios.post(`${apiUrl}/api/get-quota`, {}, { withCredentials: true });
+        const quotaLeft = resp.data.RefillsQuotaLeft;
+    
+        // Update state
+        setQuotaLeftAfterUpdate(quotaLeft);
+    
+        // Set disable based on the fetched value
+        if (quotaLeft === 0) {
+          setDisable(true);
+        } else {
+          setDisable(false);
+        }
+      } catch (error) {
+        console.error("Error fetching quota:", error.message);
       }
-      else{
-        setDisable(false)
-      }
-    }
+    };
+    
     fetchQuota()
   },[isAuthenticated])
   const [step, setStep] = useState(1); // Step 1: Booking Form, Step 2: Payment Options
