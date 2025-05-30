@@ -3,17 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import { Carousel } from "./Carousel";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaInstagram, FaLinkedin, FaArrowRight } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaInstagram, FaLinkedin, FaArrowRight, FaClipboardList, FaBell } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 function Guestdashboard() {
   const navigate = useNavigate();
-const viewDiv = useRef(null)
-useEffect(()=>{
-  if(viewDiv.current){
-    viewDiv.current.scrollIntoView({behavior:'smooth'})
-  }
-},[])
+  const viewDiv = useRef(null)
+  useEffect(()=>{
+    if(viewDiv.current){
+      viewDiv.current.scrollIntoView({behavior:'smooth'})
+    }
+  },[])
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,6 +108,44 @@ useEffect(()=>{
               </div>
             </Link>
           </motion.div>
+
+          <motion.div variants={itemVariants} whileHover={{ scale: 1.03 }}>
+            <Link to="/guest-bookingStatus" className="group block">
+              <div className="relative text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-md">
+                  <FaClipboardList className="h-8 w-8 text-white" />
+                </div>
+                <img 
+                  src="/application-status.png" // Replace with your actual image path
+                  alt="Booking Status" 
+                  className="w-40 h-40 mx-auto object-contain mt-8 group-hover:scale-105 transition-transform duration-300"
+                />
+                <p className="mt-6 text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  Booking Status
+                  <FaArrowRight className="inline-block ml-2 text-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                </p>
+              </div>
+            </Link>
+          </motion.div>
+
+          <motion.div variants={itemVariants} whileHover={{ scale: 1.03 }}>
+            <Link to="/guest-notice" className="group block">
+              <div className="relative text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-md">
+                  <FaBell className="h-8 w-8 text-white" />
+                </div>
+                <img 
+                  src="/notice.png" // Replace with your actual image path
+                  alt="Guest Notices" 
+                  className="w-40 h-40 mx-auto object-contain mt-8 group-hover:scale-105 transition-transform duration-300"
+                />
+                <p className="mt-6 text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  Guest Notices
+                  <FaArrowRight className="inline-block ml-2 text-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                </p>
+              </div>
+            </Link>
+          </motion.div>
         </motion.div>
 
         {/* Sign Up CTA */}
@@ -170,9 +208,9 @@ useEffect(()=>{
               <h3 className="text-xl font-semibold mb-4 text-white">Quick Links</h3>
               <ul className="space-y-3">
                 <li><Link to="/guest-booking" className="text-gray-400 hover:text-white transition-colors">Refill Booking</Link></li>
+                <li><Link to="/guest-notice" className="text-gray-400 hover:text-white transition-colors">Notices</Link></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Customer Support</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Safety Guidelines</a></li>
               </ul>
             </div>
             <div className="space-y-4">
