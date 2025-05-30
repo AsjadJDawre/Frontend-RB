@@ -15,7 +15,7 @@ import AdminMessage from './component/AdminMessage';
 import Notice from './component/Notice';
 import NotFound from "./component/NotFound";
 import Forgot_Password from './component/Password_Reset';
-import Guestdashboard from './component/guest-dashboard';
+import Guestdashboard from './component/Guest-dashboard';
 import GuestBooking from './component/GuestBooking';
 import GuestSuccessPage from './component/Guest-Success';
 import GuestBookingHistory from './component/GuestBookingHistory';
