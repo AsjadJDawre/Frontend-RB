@@ -15,6 +15,12 @@ import AdminMessage from './component/AdminMessage';
 import Notice from './component/Notice';
 import NotFound from "./component/NotFound";
 import Forgot_Password from './component/Password_Reset';
+import Guestdashboard from './component/guest-dashboard';
+import GuestBooking from './component/GuestBooking';
+import GuestSuccessPage from './component/Guest-Success';
+import GuestBookingHistory from './component/GuestBookingHistory';
+import GuestNotice from './component/GuestNotice';
+import GuestBookingStatus from './component/GuestBookingStatus';
 
 function App() {
   return (
@@ -32,12 +38,22 @@ function App() {
   <Route path="/user-booking" element={<Booking />} />
   <Route path="/booking-history" element={<BookingHistory />} />
   <Route path="/successful Booking" element={<SuccessPage />} />
+
   <Route path="/successful-AdminBooking" element={<AdminSuccess />} />
   <Route path="/admin-message" element={<AdminMessage />} />
   <Route path="/notice" element={<Notice />} />
   <Route path="/Test" element={<Test />} />
   <Route path="/Admin" element={<AdminDashboard />} />
   <Route path="/password-reset" element={<Forgot_Password />} />
+
+  {/* Guest Routes */}
+  <Route path="/guest-dashboard" element={<Guestdashboard />} />
+  <Route path="/guest-booking" element={<GuestBooking />} />
+    <Route path="/guest-notice" element={<GuestNotice />} />
+    <Route path="/guest-bookingStatus" element={<GuestBookingStatus />} />
+
+  <Route path="/booking-success" element={<GuestSuccessPage />} />
+  <Route path="/guest-booking-history" element={<GuestBookingHistory />} />
 
   <Route path="*" element={<NotFound />} />
 

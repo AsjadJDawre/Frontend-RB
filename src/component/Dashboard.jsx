@@ -85,6 +85,9 @@ const Dashboard = () => {
   <Link to={"/login"}>
   <h3 className="text-[#004e8f] text-lg font-bold">My HP Gas Customer Login</h3>
   </Link>
+  <Link to={"/guest-dashboard"}>
+  <h3 className="text-[#004e8f] text-lg font-bold">View As Guest</h3>
+  </Link>
 </div>
 
       

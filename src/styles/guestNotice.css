@@ -1,0 +1,43 @@
+@keyframes scroll {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Optional: Fade effect at top and bottom */
+.scroll-wrapper {
+  position: relative;
+  height: 24rem; /* h-96 */
+  overflow: hidden;
+}
+
+.scroll-gradient::before,
+.scroll-gradient::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scroll-gradient::before {
+  top: 0;
+  background: linear-gradient(to bottom, #bfdbfe, transparent); /* Tailwind's blue-200 to transparent */
+}
+
+.scroll-gradient::after {
+  bottom: 0;
+  background: linear-gradient(to top, #bfdbfe, transparent);
+}
